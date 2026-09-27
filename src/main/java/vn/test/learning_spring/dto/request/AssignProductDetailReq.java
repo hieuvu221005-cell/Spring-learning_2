@@ -1,10 +1,7 @@
 package vn.test.learning_spring.dto.request;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AssignProductDetailReq implements Serializable {
+    @NonNull
     private Long productOfferingId;
     private List<Long> productDetailIds;
 }

@@ -1,12 +1,13 @@
 package vn.test.learning_spring.reponsitory;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import vn.test.learning_spring.entity.ProductOfferings;
 
 import java.util.List;
 
-public interface ProductOfferingRepo extends JpaRepository<ProductOfferings,Long> {
+public interface ProductOfferingRepo extends JpaRepository<ProductOfferings,Long>, JpaSpecificationExecutor<ProductOfferings> {
 
     List<ProductOfferings> findByName(String name);
     List<ProductOfferings> findByNameAndPrice(String name,Long price);
@@ -25,5 +26,8 @@ public interface ProductOfferingRepo extends JpaRepository<ProductOfferings,Long
 //            "             from product_offering_detail\n" +
 //            "             where product_detail_id = 1)",nativeQuery = true)
 
+
+    @Query("select po from ProductOfferings po order by po.id limit :pageSize offset :offSetValue")
+    List<ProductOfferings> getAllByPage(Integer pageSize,Integer offSetValue);
 
 }
